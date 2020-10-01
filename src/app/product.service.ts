@@ -14,4 +14,8 @@ export class ProductService {
   public getProducts(): Observable<ProductData[]> {
     return this.httpClient.get<ProductData[]>('http://localhost:8080/getProducts');
   }
+
+  public getProduct(id: number): Observable<ProductData>{
+    return this.httpClient.get<ProductData>('http://localhost:8080/getProduct/'+ id);
+  }
 }

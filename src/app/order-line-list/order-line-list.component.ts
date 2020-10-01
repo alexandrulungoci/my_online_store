@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { OrderLineService } from '../order-line.service';
+import { OrderLineData } from '../orderLine-data'
+import { ProductData } from '../product-data';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-order-line-list',
@@ -7,9 +11,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderLineListComponent implements OnInit {
 
-  constructor() { }
+  orderLines: OrderLineData[] = []
+  products: ProductData[] = [];
+  name: string = "";
+
+  constructor(private orderLineService: OrderLineService, private productService: ProductService) { }
 
   ngOnInit(): void {
+    this.orderLineService.getOrderLines().subscribe(receivedOrderLines => {
+      this.orderLines = receivedOrderLines;
+    })
   }
+
+  
+  
 
 }
