@@ -1,4 +1,4 @@
-<p>order-line-list works!</p>
+
 
 <div>
 
@@ -11,19 +11,23 @@
     </tr>
     <tr *ngFor='let item of orderLines'>
       <td>{{item.id}}</td>
-      <!-- <td>{{item.productData.name}}</td> -->
       
+      <td>{{item.product_id}}</td>
       <td>name</td>
 
       <!-- <td>{{item.productData.price}}</td> -->
       <td>price</td>
 
-      <td ><input type="number" [(ngModel)]="orderLineData.quantity" placeholder="quantity:" /></td>
+      <td ><input type="number" [(ngModel)]="item.quantity" placeholder="quantity:" /></td>
         <!-- <button routerLink="product-edit/{{item.id}}">Editt</button> -->
         <button (click)="delete(item.id)">Delete</button>
     </tr>
     
   </table>
 
+    <div>
+      <button>TOTAL</button>
+      <button>ORDER</button>
+    </div>
 
 </div>

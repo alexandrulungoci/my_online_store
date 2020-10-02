@@ -7,11 +7,12 @@
       <th>price</th>
     </tr>
     <tr *ngFor='let item of products'>
-      <td>{{item.id}}</td>
+      <td [(ngModel)]="product_id">{{item.id}}</td>
       <td>{{item.title}}</td>
       <td>{{item.price}}</td>
         <button routerLink="product-edit/{{item.id}}">Edit</button>
         <button (click)="delete(item.id)">Delete</button>
+        <button (click)="addToCart(item.id)">Add to cart</button>
     </tr>
     
   </table>

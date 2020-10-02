@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { OrderLineService } from '../order-line.service';
 import { OrderLineData } from '../orderLine-data'
 import { ProductData } from '../product-data';
@@ -13,9 +14,13 @@ export class OrderLineListComponent implements OnInit {
 
   orderLines: OrderLineData[] = []
   products: ProductData[] = [];
+  product: ProductData = null;
   name: string = "";
+  orderLineData: OrderLineData = new OrderLineData;
 
-  constructor(private orderLineService: OrderLineService, private productService: ProductService) { }
+  constructor(private orderLineService: OrderLineService, 
+    private productService: ProductService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.orderLineService.getOrderLines().subscribe(receivedOrderLines => {
@@ -31,5 +36,12 @@ export class OrderLineListComponent implements OnInit {
     });
   }
   
+  addToCart(): void {
+    // this.product = this.productService.getProduct(product_id)
+      this.orderLineService.createOrderLine(this.orderLineData).subscribe(result => {
+        console.log("Product added to cart");
+        this.router.navigateByUrl("product-list");
+      })
+  }
 
 }
