@@ -23,7 +23,13 @@ export class OrderLineListComponent implements OnInit {
     })
   }
 
-  
+  delete(id: number) {
+    this.orderLineService.deleteOrderLine(id).subscribe(messege => {
+      this.ngOnInit();
+      console.log(messege);
+
+    });
+  }
   
 
 }
