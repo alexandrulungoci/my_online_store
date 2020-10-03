@@ -16,8 +16,7 @@ export class OrderLineListComponent implements OnInit {
   products: ProductData[] = [];
   orderLineData: OrderLineData = new OrderLineData;
 
-  constructor(private orderLineService: OrderLineService, 
-    private productService: ProductService,
+  constructor(private orderLineService: OrderLineService,
     private router: Router) { }
 
   ngOnInit(): void {

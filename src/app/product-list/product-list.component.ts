@@ -14,14 +14,23 @@ import { ProductService } from '../product.service'
 export class ProductListComponent implements OnInit {
 
   products: ProductData[] = [];
-  
+  orderLineData: OrderLineData = null;
   product: ProductData = null;
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService,
+              private orderLineService: OrderLineService) { }
 
   ngOnInit(): void {this.productService.getProducts().subscribe(receivedProducts => {
   this.products = receivedProducts;
     });
+  }
+
+  addToCart(): void {
+     
+      this.orderLineService.createOrderLine(this.orderLineData).subscribe(result => {
+        console.log("Product added to cart");
+        this.router.navigateByUrl("product-list");
+      })
   }
 
 
