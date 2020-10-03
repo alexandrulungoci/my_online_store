@@ -12,10 +12,10 @@
     <tr *ngFor='let item of orderLines'>
       <td>{{item.id}}</td>
       
-      <td>{{item.product_id}}</td>
+      <td>{{item.prod}}</td>
       <td>name</td>
 
-      <!-- <td>{{item.productData.price}}</td> -->
+      <td>{{item.productData.price}}</td>
       <td>price</td>
 
       <td ><input type="number" [(ngModel)]="item.quantity" placeholder="quantity:" /></td>

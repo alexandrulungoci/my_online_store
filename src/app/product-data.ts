@@ -5,7 +5,7 @@ export class ProductData{
     id: number;
     title: string;
     thumbnail: string;
-    category: CategoryData;
+    categoryDto: CategoryData;
     price: number;
     productType: ProductType;
     

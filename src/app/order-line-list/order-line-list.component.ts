@@ -14,8 +14,6 @@ export class OrderLineListComponent implements OnInit {
 
   orderLines: OrderLineData[] = []
   products: ProductData[] = [];
-  product: ProductData = null;
-  name: string = "";
   orderLineData: OrderLineData = new OrderLineData;
 
   constructor(private orderLineService: OrderLineService, 

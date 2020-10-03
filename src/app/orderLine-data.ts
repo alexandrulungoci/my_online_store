@@ -2,7 +2,7 @@ import { ProductData } from './product-data'
 
 export class OrderLineData{
     id: number;
-    product: ProductData;
+    productDto: ProductData;
     quantity: number;
-    productPrice: number;
+    price: number;
 }
