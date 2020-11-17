@@ -1,0 +1,32 @@
+<div>
+
+  <table *ngFor="let order of orders" style="width:50%">
+
+    <tr>
+      <th>Order Id: {{order.id}}</th>
+      <th>Product name</th>
+      <th>Product price</th>
+      <th>Quantity</th>
+      <th>Line Price</th>
+
+
+
+    </tr>
+    <tr *ngFor="let orderLine of order.orderLineDtoList">
+      <td></td>
+      <td>{{orderLine.productDto.title}}</td>
+      <td>{{orderLine.productPrice}}</td>
+      <td>{{orderLine.quantity}}</td>
+      <td>{{orderLine.linePrice}}</td>
+
+    </tr>
+
+
+    <div>Total Cost: {{order.totalCost}}</div>
+
+    <br>
+
+  </table>
+
+
+</div>

@@ -1,33 +1,35 @@
-
+<style>
+  table, th, td {
+    border: 1px solid black;
+      }
+  </style>
 
 <div>
 
-<table style="width:100%">
-    <tr>
-      <th>id</th>
-      <th>Product name</th>
-      <th>Product price</th>
-      <th>Quantity</th>
-    </tr>
-    <tr *ngFor='let item of orderLines'>
-      <td>{{item.id}}</td>
-      
-      <td>{{item.productDto.title}}</td>
-  
+    <table >
+        <tr>
+          <th>id</th>
+          <th>Product name</th>
+          <th>Product price</th>
+          <th>Quantity</th>
+          <th>Line price</th>
+        </tr>
+        <tr *ngFor='let item of orderLines'>
+          <td>{{item.id}}</td>
 
-      <td>{{item.productDto.price}}</td>
-      
+          <td>{{item.productDto.title}}</td>
 
-      <td ><input type="number" [(ngModel)]="item.quantity" placeholder="quantity:" /></td>
-        <!-- <button routerLink="product-edit/{{item.id}}">Editt</button> -->
-        <button (click)="delete(item.id)">Delete</button>
-    </tr>
-    
-  </table>
+          <td>{{item.productDto.price}}</td>
 
-    <div>
-      <button>TOTAL</button>
-      <button>ORDER</button>
+          <td>{{item.quantity}}</td>
+
+          <td>{{item.quantity*item.productPrice}}</td>
+
+            <button (click)="delete(item.id)">Delete</button>
+            <button routerLink="orderLine-edit/{{item.id}}">edit Q</button>
+        </tr>
+
+      </table>
+
     </div>
 
-</div>

@@ -9,14 +9,14 @@ import { OrderData } from '../order-data'
 })
 export class OrderListComponent implements OnInit {
 
-  orders: OrderData[] = []
+  orders: OrderData[] = [];
 
   constructor(private orderService: OrderService) { }
 
   ngOnInit(): void {
     this.orderService.getOrders().subscribe(receivedOrders => {
       this.orders = receivedOrders;
-    })
+    });
   }
 
 }

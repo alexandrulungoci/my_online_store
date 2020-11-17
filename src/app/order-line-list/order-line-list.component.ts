@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { OrderLineService } from '../order-line.service';
-import { OrderLineData } from '../orderLine-data'
-import { ProductData } from '../product-data';
+import { OrderLineData } from '../orderLine-data';
 import { ProductService } from '../product.service';
+import { ProductData } from '../productData';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-order-line-list',
@@ -12,33 +13,44 @@ import { ProductService } from '../product.service';
 })
 export class OrderLineListComponent implements OnInit {
 
-  orderLines: OrderLineData[] = []
-  products: ProductData[] = [];
-  orderLineData: OrderLineData = new OrderLineData;
+  orderLines: OrderLineData[] = [];
+  // products: ProductData[] = [];
+  // product: ProductData = null;
+  // name: string = "";
+  orderLineData: OrderLineData = new OrderLineData();
 
   constructor(private orderLineService: OrderLineService,
-    private router: Router) { }
+              private productService: ProductService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.orderLineService.getOrderLines().subscribe(receivedOrderLines => {
       this.orderLines = receivedOrderLines;
-    })
+    });
   }
 
-  delete(id: number) {
+  delete(id: number): void {
     this.orderLineService.deleteOrderLine(id).subscribe(messege => {
       this.ngOnInit();
       console.log(messege);
 
     });
   }
-  
+
   addToCart(): void {
     // this.product = this.productService.getProduct(product_id)
-      this.orderLineService.createOrderLine(this.orderLineData).subscribe(result => {
-        console.log("Product added to cart");
-        this.router.navigateByUrl("product-list");
-      })
+      this.orderLineService.createOrderLine(new OrderLineData()).subscribe(result => {
+        console.log('Product added to cart');
+        this.router.navigateByUrl('product-list');
+      });
   }
+
+  // updateOrderLine(id: number): void{
+  //
+  //   this.orderLineData = this.orderLineService.getOrderLineById(id);
+  //   this.orderLineService.updateOrderLine(this.orderLineData).subscribe(result => {
+  //     console.log(this.orderLineData);
+  //     this.router.navigateByUrl('orderLine-list');
+  //   }) }
 
 }

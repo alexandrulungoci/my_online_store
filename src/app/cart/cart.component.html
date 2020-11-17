@@ -1,0 +1,36 @@
+
+<div>
+
+    <table >
+
+        <tr>
+<!--          <th>id</th>-->
+          <th>Product name</th>
+          <th>Product price</th>
+          <th>Quantity</th>
+          <th>Line Price</th>
+        </tr>
+        <tr *ngFor="let orderLine of cart.orderLineDtoList" >
+<!--          <td>{{orderLine.id}}</td>-->
+
+          <td>{{orderLine.productDto.title}}</td>
+          <td>{{orderLine.productPrice}}</td>
+          <td>{{orderLine.quantity}}</td>
+          <td >{{orderLine.linePrice}}</td>
+
+          <button (click)="delete(orderLine.id)">Delete</button>
+          <button routerLink="orderLine-edit/{{orderLine.id}}">Edit quantity</button>
+
+        </tr>
+
+      </table>
+
+  <div>Total cost: {{cart.totalCost}}</div>
+
+  <div style="margin-top: 20px">
+    <button routerLink="/productList-user">Back to product list</button>
+  </div>
+
+  <div><button (click)="createOrder()">Create order</button></div>
+
+    </div>

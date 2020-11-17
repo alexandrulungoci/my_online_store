@@ -1,7 +1,6 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { OrderLineListComponent } from './order-line-list/order-line-list.component';
 import { OrderLineData } from './orderLine-data';
 
 @Injectable({
@@ -15,12 +14,19 @@ export class OrderLineService {
     return this.httpClient.get<OrderLineData[]>('http://localhost:8080/getOrderLines');
   }
 
-  public deleteOrderLine(id: number) : Observable<any>{
-    return this.httpClient.delete<any>('http://localhost:8080/deleteOrderLine/'+ id);
+  public deleteOrderLine(id: number): Observable<any>{
+    return this.httpClient.delete<any>('http://localhost:8080/deleteOrderLine/' + id);
   }
 
   public createOrderLine(orderLineData: OrderLineData): Observable<any>{
     return this.httpClient.post<any>('http://localhost:8080/addOrderLine', orderLineData);
   }
 
+  public updateOrderLine(orderLineData: OrderLineData): Observable<any>{
+    return this.httpClient.put<any>('http://localhost:8080/updateOrderLine', orderLineData);
+  }
+
+  public getOrderLineById(id: number): Observable<OrderLineData>{
+    return this.httpClient.get<OrderLineData>('http://localhost:8080/getOrderLineById/' + id);
+  }
 }
