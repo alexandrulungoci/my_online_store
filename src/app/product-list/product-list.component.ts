@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { OrderLineService } from '../order-line.service';
 import { OrderLineData } from '../orderLine-data';
-import { ProductData } from '../product-data'
-import { ProductService } from '../product.service'
+import { ProductData } from '../product-data';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-product-list',
@@ -26,10 +26,10 @@ export class ProductListComponent implements OnInit {
   }
 
   addToCart(): void {
-     
+
       this.orderLineService.createOrderLine(this.orderLineData).subscribe(result => {
-        console.log("Product added to cart");
-        this.router.navigateByUrl("product-list");
+        console.log('Product added to cart');
+        this.router.navigateByUrl('product-list');
       })
   }
 

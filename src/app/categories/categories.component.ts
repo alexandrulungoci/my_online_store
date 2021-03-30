@@ -11,9 +11,9 @@ import { CategoryDataService } from '../service/data/category-data.service';
 
 export class CategoriesComponent implements OnInit {
 
-  id: number
-  category: Category
-  categories: Category[]
+  id: number;
+  category: Category;
+  categories: Category[];
 
   constructor(
     private service: CategoryDataService,
@@ -22,34 +22,34 @@ export class CategoriesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['id']
-    this.category = new Category(this.id, '', null, null)
+    this.id = this.route.snapshot.params.id;
+    this.category = new Category(this.id, '', null, null);
     this.service.retriveAllCategories().subscribe(
       response => this.categories = response
-    )
+    );
 
-    if (this.id != 0) {
+    if (this.id !== 0) {
       this.service.retrieveCategory(this.id).subscribe(
         response => this.category = response
-      )
+      );
     }
   }
 
   saveCategory() {
-    if (this.id == 0) {
+    if (this.id === 0) {
       this.service.createCategory(this.category).subscribe(
         data => {
-          console.log(data)
-          this.router.navigate(['categories'])
+          console.log(data);
+          this.router.navigate(['categories']);
         }
-      )
+      );
     } else {
       this.service.updateCategory(this.category).subscribe(
         data => {
-          console.log(data)
-          this.router.navigate(['categories'])
+          console.log(data);
+          this.router.navigate(['categories']);
         }
-      )
+      );
     }
   }
 

@@ -14,35 +14,34 @@ import { CategoryDataService } from '../service/data/category-data.service';
 })
 export class AddProductAdminComponent implements OnInit {
 
-  product:ProductData= new ProductData;
-  category: Category = new Category(0,'',null, null);
-  author:AuthorData= new AuthorData;
+  // tslint:disable-next-line:new-parens
+  product: ProductData = new ProductData;
+  category: Category = new Category(0, '', null, null);
+  // tslint:disable-next-line:new-parens
+  author: AuthorData = new AuthorData;
   categories: Category[];
 
   constructor(
-    private productService:ProductService, 
-    private router:Router,
+    private productService: ProductService,
+    private router: Router,
     private categoryService: CategoryDataService) { }
 
 
   ngOnInit(): void {
     this.categoryService.retriveAllCategories().subscribe(
       response => this.categories = response
-    )
+    );
     this.product.category = this.category;
-    this.product.author=this.author;
+    this.product.author = this.author;
   }
 
 
 public addProduct(): void {
 
-   this.productService.addProduct(this.product).subscribe(result =>{
-    console.log("Product added");
-    this.router.navigateByUrl("");
+   this.productService.addProduct(this.product).subscribe(result => {
+    console.log('Product added');
+    this.router.navigateByUrl('');
    });
   }
-
-
- 
 }
 
